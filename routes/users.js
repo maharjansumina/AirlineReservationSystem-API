@@ -15,8 +15,8 @@ router.post('/register', (req, res, next) => {
         }
         User.create({
             fullname: req.body.fullname,
-            phone: req.body.phone,
             address: req.body.address,
+            phone: req.body.phone,
             email: req.body.email,
             password: hash,
             conpassword: hash,
@@ -48,6 +48,14 @@ router.post('/login', (req, res, next) => {
                     }).catch(next);
             }
         }).catch(next);
+})
+
+router.get('/me',auth.verifyUser,(req,res,next)=>{
+    User.findById({_id:req.user._id})
+    .then((result)=>{
+        res.json(result)
+    })
+    .catch(next)
 })
 
 module.exports = router;
