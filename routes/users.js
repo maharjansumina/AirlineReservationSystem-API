@@ -57,5 +57,12 @@ router.get('/me',auth.verifyUser,(req,res,next)=>{
     })
     .catch(next)
 })
+router.get('/user',auth.verifyUser,(req,res,next)=>{
+    User.find({admin:false})
+    .then((result)=>{
+        res.json(result)
+    })
+    .catch(next)
+})
 
 module.exports = router;
