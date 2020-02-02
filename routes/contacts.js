@@ -42,4 +42,12 @@ router.route('/')
         }
     })
 
+router.get('/contact',(req,res,next)=>{
+    contactsModel.find({})
+    .then((result)=>{
+        res.json(result)
+    })
+    .catch(next)
+})
+
 module.exports = router;
