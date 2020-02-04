@@ -8,26 +8,31 @@ const userSchema = new mongoose.Schema({
     },
     address: {
         type: String,
-        required: true
+        required: true,
+        trim:true
     },
     phone: {
         type: String,
-        required: true
+        required: true,
+        trim:true
     },
     email: {
         type: String,
         required: true,
         unique: true,
-        minlength: 6
+        minlength: 6,
+        trim:true
     },
     password: {
         type: String,
-        required: true
+        required: true,
+        trim:true
     
     },
     conpassword: {
         type: String,
-        required: true
+        required: true,
+        trim:true
     },
     image: {
         type: String
