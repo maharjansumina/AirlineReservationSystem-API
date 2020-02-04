@@ -64,5 +64,16 @@ router.get('/user',auth.verifyUser,(req,res,next)=>{
     })
     .catch(next)
 })
+router.put('/userupdate',auth.verifyUser,(req,res,next)=>{
+    User.findOneAndUpdate({_id: req.body._id}, req.body, { new: true }, (err, doc) => {
+        if(!err) {
+            res.json({ status: 'Profile Updated'});
+        } else {
+            Console.log('Error' + err );
+            res.json('erroe on update');
+        }
+
+    });
+});
 
 module.exports = router;

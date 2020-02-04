@@ -6,10 +6,9 @@ router.route('/')
     .get( async (req, res) =>{
         try{
             const data = await contactsModel.find({})
-            res.json({
-                data: data,
-                message: true
-            })
+            res.json(
+                data
+            )
         }
         catch(err){
             res.json({

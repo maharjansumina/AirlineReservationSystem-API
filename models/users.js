@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const userSchema = new mongoose.Schema({
     fullname: {
         type: String,
-        required: true
+        required: true,
+        trim:true
     },
     address: {
         type: String,
@@ -22,6 +23,7 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
+    
     },
     conpassword: {
         type: String,
