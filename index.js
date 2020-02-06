@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const userRouter = require('./routes/users');
 const contactRouter = require('./routes/contacts');
 const addflightRouter = require('./routes/addflight');
+const cityRouter = require('./routes/citys');
 const dotenv = require('dotenv').config();
 const uploadRouter = require('./routes/upload');
 const auth = require('./auth');
@@ -27,6 +28,7 @@ app.use('/users', userRouter);
 app.use('/upload', uploadRouter);
 app.use('/contact', contactRouter);
 app.use('/addflight', addflightRouter);
+app.use('/city', cityRouter);
 app.use(auth.verifyUser);
 
 app.use((err, req, res, next) => {

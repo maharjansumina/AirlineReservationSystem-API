@@ -1,15 +1,14 @@
 const mongoose = require('mongoose');
+const City=require('./citys');
 
-const userSchema = new mongoose.Schema({
+const flightSchema = new mongoose.Schema({
     from: {
-        type: String,
-        required: true,
-        trim:true
+        type: mongoose.Schema.Types.ObjectId,
+        ref:City
     },
     to: {
-        type: String,
-        required: true,
-        trim:true
+        type: mongoose.Schema.Types.ObjectId,
+        ref:City
     },
     time: {
         type: String,
@@ -18,4 +17,4 @@ const userSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('AddFlight', userSchema);
+module.exports = mongoose.model('AddFlight', flightSchema);
