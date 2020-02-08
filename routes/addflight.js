@@ -42,7 +42,7 @@ router. post('/',async (req,res,next)=>{
     }
 })
 
-router.get('/search',async(req,res,next)=>{
+router.post('/search',async(req,res,next)=>{
     const flights=await addflightsModel.find({from:req.body.from,to:req.body.to}).populate('from').populate('to');
     if(flights){
         res.json({success:true,flights:flights})
