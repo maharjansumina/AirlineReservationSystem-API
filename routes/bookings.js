@@ -1,23 +1,24 @@
 const express = require('express');
 var router = express.Router();
 const bookingsModel = require('../models/bookings');
+const auth = require('../auth');
 
 router.route('/')
-    .get( async (req, res) =>{
-        try{
+    .get(async (req, res) => {
+        try {
             const data = await bookingsModel.find({})
             res.json(
                 data
             )
         }
-        catch(err){
+        catch (err) {
             res.json({
                 message: false,
                 error: err
             })
         }
     })
-    .post( async (req, res) =>{
+    .post(async (req, res) => {
         const post = new bookingsModel({
             name: req.body.name,
             from: req.body.from,
@@ -27,7 +28,7 @@ router.route('/')
             email: req.body.email
         })
 
-        try{
+        try {
             const data = await post.save()
             res.json({
                 status: 200,
@@ -37,11 +38,18 @@ router.route('/')
             })
             console.log("Inserted Successfully");
         }
-        catch(err){
+        catch (err) {
             res.json({
                 message: err
             })
         }
     })
+
+router.delete('/delete/:bookingId', auth.verifyUser, (req, res, next) => {
+    bookingsModel.findByIdAndDelete(req.params.bookingId)
+        .then((booking) => {
+            res.json({ status: 'Booking cancelled!', booking: booking })
+        }).catch(next);
+});
 
 module.exports = router;
