@@ -45,7 +45,7 @@ router.route('/')
         }
     })
 
-router.delete('/delete/:bookingId', auth.verifyUser, (req, res, next) => {
+router.delete('/delete/:bookingId', (req, res, next) => {
     bookingsModel.findByIdAndDelete(req.params.bookingId)
         .then((booking) => {
             res.json({ status: 'Booking cancelled!', booking: booking })
